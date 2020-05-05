@@ -12,8 +12,11 @@
 #' @examples
 treeviewInput <- function(inputId,
                           label = NULL,
-                          choices, selected = NULL,
+                          choices,
+                          selected = NULL,
                           multiple = FALSE,
+                          levels = 1,
+                          borders = TRUE,
                           prevent_unselect = FALSE,
                           return_value = c("name", "all"),
                           width = NULL) {
@@ -22,7 +25,9 @@ treeviewInput <- function(inputId,
     config = list(
       data = choices,
       multiSelect = multiple,
-      preventUnselect = prevent_unselect
+      preventUnselect = prevent_unselect,
+      levels = levels,
+      showBorder = borders
     ),
     selected = list1(selected)
   ))

@@ -10,6 +10,8 @@ treeviewInput(
   choices,
   selected = NULL,
   multiple = FALSE,
+  levels = 1,
+  borders = TRUE,
   prevent_unselect = FALSE,
   return_value = c("name", "all"),
   width = NULL
