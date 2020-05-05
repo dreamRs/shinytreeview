@@ -76,3 +76,55 @@ html_dependency_treeview <- function() {
   )
 }
 
+
+
+
+
+
+
+
+#' Create choice structure for \code{treeviewInput}
+#'
+#' @param data A \code{data.frame}.
+#' @param levels Variables identifying hierarchical levels.
+#'
+#' @return a \code{list} that can be used in \code{\link{treeviewInput}}.
+#' @export
+#'
+#' @examples
+#' data("cities")
+#' head(cities)
+#'
+#' make_tree(cities, c("continent", "country", "city"))
+make_tree <- function(data, levels) {
+  data <- as.data.frame(data)
+  if (!all(levels %in% names(data)))
+    stop("All levels must be valid variables in data", call. = FALSE)
+  data[] <- lapply(data[levels], as.character)
+  lapply(
+    X = unique(data[[levels[1]]]),
+    FUN = function(var) {
+      dat <- data[data[[levels[1]]] == var, , drop = FALSE]
+      if (length(levels) == 1) {
+        list(text = var)
+      } else {
+        list(
+          text = var,
+          nodes = make_tree(dat, levels[-1])
+        )
+      }
+    }
+  )
+}
+
+
+
+
+
+
+
+
+
+
+
+
