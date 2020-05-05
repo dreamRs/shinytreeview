@@ -4,7 +4,13 @@
 \alias{treeviewInput}
 \title{Title}
 \usage{
-treeviewInput(inputId, label = NULL, choices, width = NULL)
+treeviewInput(
+  inputId,
+  label = NULL,
+  choices,
+  return_value = c("name", "all"),
+  width = NULL
+)
 }
 \arguments{
 \item{width}{}

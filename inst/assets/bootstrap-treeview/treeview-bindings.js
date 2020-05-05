@@ -12,6 +12,13 @@ $.extend(treeviewInputBinding, {
   getId: function(el) {
     return el.id;
   },
+  getType: function(el) {
+    if ($(el).attr("data-return") == "name") {
+      return "treeview.name";
+    } else {
+      return "treeview.all";
+    }
+  },
   getValue: function(el) {
     var tree = $(el).data("treeview");
     try {

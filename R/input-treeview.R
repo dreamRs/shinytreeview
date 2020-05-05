@@ -10,8 +10,8 @@
 #' @export
 #'
 #' @examples
-treeviewInput <- function(inputId, label = NULL, choices, width = NULL) {
-
+treeviewInput <- function(inputId, label = NULL, choices, return_value = c("name", "all"), width = NULL) {
+  return_value <- match.arg(return_value)
   options <- list(
     data = choices
   )
@@ -24,6 +24,7 @@ treeviewInput <- function(inputId, label = NULL, choices, width = NULL) {
     },
     tags$div(
       id = inputId, class = "treeview-input",
+      `data-return` = return_value,
       tags$script(
         type = "application/json", `data-for` = inputId,
         jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE)

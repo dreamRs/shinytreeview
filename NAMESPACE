@@ -3,3 +3,4 @@
 export(treeviewInput)
 importFrom(htmltools,htmlDependency)
 importFrom(shiny,addResourcePath)
+importFrom(shiny,registerInputHandler)
