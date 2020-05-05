@@ -10,11 +10,19 @@
 #' @export
 #'
 #' @examples
-treeviewInput <- function(inputId, label = NULL, choices, selected = NULL, return_value = c("name", "all"), width = NULL) {
+treeviewInput <- function(inputId,
+                          label = NULL,
+                          choices, selected = NULL,
+                          multiple = FALSE,
+                          prevent_unselect = FALSE,
+                          return_value = c("name", "all"),
+                          width = NULL) {
   return_value <- match.arg(return_value)
   options <- dropNulls(list(
     config = list(
-      data = choices
+      data = choices,
+      multiSelect = multiple,
+      preventUnselect = prevent_unselect
     ),
     selected = list1(selected)
   ))

@@ -32,6 +32,9 @@ $.extend(treeviewInputBinding, {
     $(el).on("nodeSelected", function(event, data) {
       callback();
     });
+    $(el).on("nodeUnselected", function(event, data) {
+      callback();
+    });
   },
   unsubscribe: function(el) {
     $(el).off(".treeviewInputBinding");

@@ -29,7 +29,8 @@ ui <- fluidPage(
   tags$h3("shinytreeview basic example"),
   treeviewInput(
     inputId = "tree", label = "Make a choice:",
-    choices = choices, selected = "Parent 3"
+    choices = choices, selected = "Parent 3",
+    multiple = FALSE, prevent_unselect = TRUE
   ),
   verbatimTextOutput(outputId = "result")
 )
