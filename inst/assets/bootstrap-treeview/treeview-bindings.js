@@ -41,10 +41,26 @@ $.extend(treeviewInputBinding, {
   initialize: function(el) {
     var element = document.getElementById(el.id);
 
-    var config = element.querySelector('script[data-for="' + el.id + '"]');
-    config = JSON.parse(config.innerHTML);
+    var options = element.querySelector('script[data-for="' + el.id + '"]');
+    options = JSON.parse(options.innerHTML);
 
-    $(el).treeview(config);
+    $(el).treeview(options.config);
+    var tree = $(el).treeview(true);
+    $(el).on("rendered ", function(event, data) {
+      if (options.hasOwnProperty("selected")) {
+        var selected = tree.search(options.selected, {
+          ignoreCase: false,
+          exactMatch: true,
+          revealResults: false
+        });
+        tree.selectNode(selected);
+        tree.search("", {
+          ignoreCase: false,
+          exactMatch: true,
+          revealResults: false
+        });
+      }
+    });
   }
 });
 Shiny.inputBindings.register(

@@ -12,7 +12,7 @@ choices <- list(
       list(text = "Child 1.2")
     )
   ),
-  list(text = "Parent 2", state = list(selected = TRUE)),
+  list(text = "Parent 2"), # , state = list(selected = TRUE)
   list(text = "Parent 3"),
   list(
     text = "Parent 4",
@@ -29,7 +29,7 @@ ui <- fluidPage(
   tags$h3("shinytreeview basic example"),
   treeviewInput(
     inputId = "tree", label = "Make a choice:",
-    choices = choices
+    choices = choices, selected = "Parent 3"
   ),
   verbatimTextOutput(outputId = "result")
 )

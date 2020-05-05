@@ -9,7 +9,7 @@
     if (is.null(data) || length(data) < 1) {
       NULL
     } else {
-      return(data[[1]]$text)
+      return(unlist(lapply(data, `[[`, "text")))
     }
   }, force = TRUE)
   shiny::registerInputHandler("treeview.all", function(data, ...) {

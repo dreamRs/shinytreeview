@@ -8,6 +8,7 @@ treeviewInput(
   inputId,
   label = NULL,
   choices,
+  selected = NULL,
   return_value = c("name", "all"),
   width = NULL
 )

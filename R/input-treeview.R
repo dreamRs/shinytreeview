@@ -10,11 +10,14 @@
 #' @export
 #'
 #' @examples
-treeviewInput <- function(inputId, label = NULL, choices, return_value = c("name", "all"), width = NULL) {
+treeviewInput <- function(inputId, label = NULL, choices, selected = NULL, return_value = c("name", "all"), width = NULL) {
   return_value <- match.arg(return_value)
-  options <- list(
-    data = choices
-  )
+  options <- dropNulls(list(
+    config = list(
+      data = choices
+    ),
+    selected = list1(selected)
+  ))
 
   tags$div(
     class = "form-group shiny-input-container",
