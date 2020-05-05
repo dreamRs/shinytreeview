@@ -1,5 +1,4 @@
-
-# Basic treeviewInput example ---------------------------------------------
+# Basic treeviewInput example --------------------------
 
 library(shiny)
 library(shinytreeview)
@@ -12,7 +11,7 @@ choices <- list(
       list(text = "Child 1.2")
     )
   ),
-  list(text = "Parent 2"), # , state = list(selected = TRUE)
+  list(text = "Parent 2"),
   list(text = "Parent 3"),
   list(
     text = "Parent 4",
@@ -26,7 +25,7 @@ choices <- list(
 
 
 ui <- fluidPage(
-  tags$h3("shinytreeview basic example"),
+  tags$h3("treeviewInput basic example"),
   treeviewInput(
     inputId = "tree", label = "Make a choice:",
     choices = choices, selected = "Parent 3",
@@ -41,6 +40,7 @@ server <- function(input, output, session) {
   })
 }
 
-shinyApp(ui, server)
+if (interactive())
+  shinyApp(ui, server)
 
 

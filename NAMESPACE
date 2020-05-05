@@ -2,5 +2,8 @@
 
 export(treeviewInput)
 importFrom(htmltools,htmlDependency)
+importFrom(htmltools,tags)
+importFrom(htmltools,validateCssUnit)
+importFrom(jsonlite,toJSON)
 importFrom(shiny,addResourcePath)
 importFrom(shiny,registerInputHandler)

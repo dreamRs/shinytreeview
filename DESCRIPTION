@@ -16,7 +16,9 @@ Authors@R:
       person(given = "Red",
              family = "Hat",
              role = "cph",
-             comment = "Modified version of Bootstrap Tree View"))
+             comment = "Modified version of Bootstrap Tree View"),
+      person(family = "DARES",
+             role = "fnd"))
 Description: A simple and elegant solution to displaying hierarchical tree structures in 'shiny' applications.
 License: GPL-3
 Encoding: UTF-8
@@ -25,4 +27,5 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports: 
     htmltools,
-    shiny
+    shiny,
+    jsonlite

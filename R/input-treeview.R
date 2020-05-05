@@ -1,15 +1,27 @@
 
-#' Title
+#' @title Tree view Input
 #'
-#' @param inputId
-#' @param label
-#' @param choices
-#' @param width
+#' @description Represent hierarchical tree structures to select a value in a nested list.
 #'
-#' @return
+#' @param inputId The \code{input} slot that will be used to access the value.
+#' @param label Display label for the control, or \code{NULL} for no label.
+#' @param choices A \code{list} to be used as choices.
+#' @param selected Default selected value.
+#' @param multiple Allow selection of multiple values.
+#' @param levels Sets the number of hierarchical levels deep the tree will be expanded to by default.
+#' @param borders Show or not borders around items.
+#' @param prevent_unselect When \code{multiple = TRUE}, prevent user to unselect a value.
+#' @param return_value Value returned server-side, default is the element name,
+#'  other possibility is to returned all the tree under the element selected.
+#' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
+#'
+#' @return A \code{character} value or a \code{list} depending on the \code{return_value} argument.
 #' @export
 #'
-#' @examples
+#' @importFrom htmltools tags validateCssUnit
+#' @importFrom jsonlite toJSON
+#'
+#' @example examples/basic.R
 treeviewInput <- function(inputId,
                           label = NULL,
                           choices,
