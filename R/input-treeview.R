@@ -11,6 +11,7 @@
 #' @param levels Sets the number of hierarchical levels deep the tree will be expanded to by default.
 #' @param borders Show or not borders around items.
 #' @param prevent_unselect When \code{multiple = TRUE}, prevent user to unselect a value.
+#' @param ... Others parameters passed to JavaScript treeview method.
 #' @param return_value Value returned server-side, default is the element name,
 #'  other possibility is to returned all the tree under the element selected.
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
@@ -30,16 +31,20 @@ treeviewInput <- function(inputId,
                           levels = 1,
                           borders = TRUE,
                           prevent_unselect = FALSE,
+                          ...,
                           return_value = c("name", "all"),
                           width = NULL) {
   return_value <- match.arg(return_value)
   options <- dropNulls(list(
-    config = list(
-      data = choices,
-      multiSelect = multiple,
-      preventUnselect = prevent_unselect,
-      levels = levels,
-      showBorder = borders
+    config = c(
+      list(
+        data = choices,
+        multiSelect = multiple,
+        preventUnselect = prevent_unselect,
+        levels = levels,
+        showBorder = borders
+      ),
+      list(...)
     ),
     selected = list1(selected)
   ))

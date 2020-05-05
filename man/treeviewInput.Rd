@@ -13,6 +13,7 @@ treeviewInput(
   levels = 1,
   borders = TRUE,
   prevent_unselect = FALSE,
+  ...,
   return_value = c("name", "all"),
   width = NULL
 )
@@ -33,6 +34,8 @@ treeviewInput(
 \item{borders}{Show or not borders around items.}
 
 \item{prevent_unselect}{When \code{multiple = TRUE}, prevent user to unselect a value.}
+
+\item{...}{Others parameters passed to JavaScript treeview method.}
 
 \item{return_value}{Value returned server-side, default is the element name,
 other possibility is to returned all the tree under the element selected.}
