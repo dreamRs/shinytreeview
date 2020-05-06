@@ -109,7 +109,7 @@ make_tree <- function(data, levels, ...) {
   data[] <- lapply(data[levels], as.character)
   data <- unique(x = data)
   lapply(
-    X = unique(data[[levels[1]]]),
+    X = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
     FUN = function(var) {
       dat <- data[data[[levels[1]]] == var, , drop = FALSE]
       args_level <- args[[levels[1]]]
