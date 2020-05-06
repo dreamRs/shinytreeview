@@ -47,6 +47,22 @@ $.extend(treeviewInputBinding, {
       }
       tree.search(data.search.pattern, data.search.options);
     }
+    if (data.hasOwnProperty("expand")) {
+      if (data.expand.hasOwnProperty("nodeId")) {
+        var expandedNode = tree.findNodes("^" + data.expand.nodeId + "$", "nodeId");
+        tree.expandNode(expandedNode, data.expand.options);
+      } else {
+        tree.expandAll(data.expand.options);
+      }
+    }
+    if (data.hasOwnProperty("collapse")) {
+      if (data.collapse.hasOwnProperty("nodeId")) {
+        var collapsedNode = tree.findNodes("^" + data.collapse.nodeId + "$", "nodeId");
+        tree.collapseNode(collapsedNode);
+      } else {
+        tree.collapseAll();
+      }
+    }
   },
   getState: function(el) {},
   initialize: function(el) {
@@ -71,6 +87,10 @@ $.extend(treeviewInputBinding, {
           revealResults: false
         });
       }
+      var nodes = tree.getNodes().map(function(o) {
+        return {text: o.text, nodeId: o.nodeId, parentId: o.parentId};
+      });
+      Shiny.onInputChange(el.id + "_nodes:treeview.nodes", nodes);
     });
   }
 });
