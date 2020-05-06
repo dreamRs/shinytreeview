@@ -39,7 +39,15 @@ $.extend(treeviewInputBinding, {
   unsubscribe: function(el) {
     $(el).off(".treeviewInputBinding");
   },
-  receiveMessage: function(el, data) {},
+  receiveMessage: function(el, data) {
+    var tree = $(el).data("treeview");
+    if (data.hasOwnProperty("search")) {
+      if (data.search.collapse) {
+        tree.collapseAll();
+      }
+      tree.search(data.search.pattern, data.search.options);
+    }
+  },
   getState: function(el) {},
   initialize: function(el) {
     var element = document.getElementById(el.id);
