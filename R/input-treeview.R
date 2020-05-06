@@ -92,31 +92,48 @@ html_dependency_treeview <- function() {
 #'
 #' @param data A \code{data.frame}.
 #' @param levels Variables identifying hierarchical levels.
+#' @param ... Named arguments with \code{list} of attributes
+#'  to apply to a certain level. Names must be the same as the \code{levels}.
+#'  Full list of attributes is available at the following URL :
+#'  \url{https://github.com/patternfly/patternfly-bootstrap-treeview#node-properties}.
 #'
 #' @return a \code{list} that can be used in \code{\link{treeviewInput}}.
 #' @export
 #'
-#' @examples
-#' data("cities")
-#' head(cities)
-#'
-#' make_tree(cities, c("continent", "country", "city"))
-make_tree <- function(data, levels) {
+#' @example examples/make_tree.R
+make_tree <- function(data, levels, ...) {
+  args <- list(...)
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
     stop("All levels must be valid variables in data", call. = FALSE)
   data[] <- lapply(data[levels], as.character)
+  data <- unique(x = data)
   lapply(
     X = unique(data[[levels[1]]]),
     FUN = function(var) {
       dat <- data[data[[levels[1]]] == var, , drop = FALSE]
+      args_level <- args[[levels[1]]]
       if (length(levels) == 1) {
-        list(text = var)
+        if (!is.null(args_level)) {
+          c(list(text = var), args_level)
+        } else {
+          list(text = var)
+        }
       } else {
-        list(
-          text = var,
-          nodes = make_tree(dat, levels[-1])
-        )
+        if (!is.null(args_level)) {
+          c(
+            list(
+              text = var,
+              nodes = make_tree(dat, levels[-1], ...)
+            ),
+            args_level
+          )
+        } else {
+          list(
+            text = var,
+            nodes = make_tree(dat, levels[-1], ...)
+          )
+        }
       }
     }
   )
