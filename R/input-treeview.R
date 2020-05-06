@@ -106,7 +106,7 @@ make_tree <- function(data, levels, ...) {
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
     stop("All levels must be valid variables in data", call. = FALSE)
-  data[] <- lapply(data[levels], as.character)
+  data[levels] <- lapply(data[levels], as.character)
   data <- unique(x = data)
   lapply(
     X = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
