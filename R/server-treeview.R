@@ -21,7 +21,7 @@ searchTreeview <- function(inputId,
                            collapse_before = TRUE,
                            session = shiny::getDefaultReactiveDomain()) {
   message <- list(search = list(
-    pattern = pattern,
+    pattern = list1(pattern),
     collapse = collapse_before,
     options = list(
       ignoreCase = ignore_case,
