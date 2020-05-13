@@ -14,7 +14,7 @@ treeviewInput(
   borders = TRUE,
   prevent_unselect = FALSE,
   ...,
-  return_value = c("name", "all"),
+  return_value = c("name", "id", "all"),
   width = NULL
 )
 }
@@ -38,7 +38,8 @@ treeviewInput(
 \item{...}{Others parameters passed to JavaScript treeview method.}
 
 \item{return_value}{Value returned server-side, default is the element name,
-other possibility is to returned all the tree under the element selected.}
+other possibilities are \code{"id"} (works only if nodes have an id) or
+\code{"all"} to returned all the tree under the element selected.}
 
 \item{width}{The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.}
 }

@@ -12,6 +12,13 @@
       return(unlist(lapply(data, `[[`, "text")))
     }
   }, force = TRUE)
+  shiny::registerInputHandler("treeview.id", function(data, ...) {
+    if (is.null(data) || length(data) < 1) {
+      NULL
+    } else {
+      return(unlist(lapply(data, `[[`, "id")))
+    }
+  }, force = TRUE)
   shiny::registerInputHandler("treeview.all", function(data, ...) {
     if (is.null(data)) {
       NULL

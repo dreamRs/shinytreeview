@@ -1,6 +1,6 @@
 /**
  * treeviewInput Shiny bindings
- *
+ * by VP
  *
  */
 
@@ -15,6 +15,8 @@ $.extend(treeviewInputBinding, {
   getType: function(el) {
     if ($(el).attr("data-return") == "name") {
       return "treeview.name";
+    } else if ($(el).attr("data-return") == "id") {
+      return "treeview.id";
     } else {
       return "treeview.all";
     }
