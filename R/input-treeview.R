@@ -17,7 +17,7 @@
 #'  \code{"all"} to returned all the tree under the element selected.
 #' @param width The width of the input, e.g. \code{'400px'}, or \code{'100\%'}.
 #'
-#' @return A \code{character} value or a \code{list} depending on the \code{return_value} argument.
+#' @return Server-side: A \code{character} value or a \code{list} depending on the \code{return_value} argument.
 #' @export
 #'
 #' @importFrom htmltools tags validateCssUnit

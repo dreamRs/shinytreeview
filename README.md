@@ -18,7 +18,11 @@ remotes::install_github("dreamRs/shinytreeview")
 
 ## Example
 
-![](man/figures/example-cities.png)
+`treeviewInput()` allow to select a value (or several) in a hierarchical structure :
+
+![](man/figures/example-treeview.png)
+
+Code for this example:
 
 ```r
 library(shiny)
@@ -31,9 +35,12 @@ ui <- fluidPage(
   treeviewInput(
     inputId = "tree",
     label = "Choose a city:",
-    choices = make_tree(cities, c("continent", "country", "city")),
+    choices = make_tree(
+      cities, c("continent", "country", "city")
+    ),
     multiple = FALSE,
-    prevent_unselect = TRUE
+    prevent_unselect = TRUE,
+    width = "100%"
   ),
   verbatimTextOutput(outputId = "result")
 )
@@ -44,6 +51,44 @@ server <- function(input, output, session) {
   })
 }
 
-shinyApp(ui, server)
+if (interactive())
+  shinyApp(ui, server)
+```
+
+
+
+`treecheckInput()` allow to check a value (or several) in a hierarchical structure :
+
+![](man/figures/example-treecheck.png)
+
+Code for this example:
+
+```r
+library(shiny)
+library(shinytreeview)
+
+data("cities")
+
+ui <- fluidPage(
+  tags$h3("treeviewInput cities example"),
+  treecheckInput(
+    inputId = "tree",
+    label = "Choose a city:",
+    choices = make_tree(
+      cities, c("continent", "country", "city")
+    ),
+    width = "100%"
+  ),
+  verbatimTextOutput(outputId = "result")
+)
+
+server <- function(input, output, session) {
+  output$result <- renderPrint({
+    input$tree
+  })
+}
+
+if (interactive())
+  shinyApp(ui, server)
 ```
 
