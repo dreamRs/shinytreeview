@@ -4,12 +4,14 @@
 \alias{make_tree}
 \title{Create choice structure for \code{treeviewInput}}
 \usage{
-make_tree(data, levels, ...)
+make_tree(data, levels, selected = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}
 
 \item{levels}{Variables identifying hierarchical levels.}
+
+\item{selected}{Default selected value(s).}
 
 \item{...}{Named arguments with \code{list} of attributes
 to apply to a certain level. Names must be the same as the \code{levels}.

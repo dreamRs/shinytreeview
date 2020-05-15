@@ -21,9 +21,9 @@ treecheckInput(
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{choices}{A \code{list} to be used as choices.}
+\item{choices}{A \code{list} to be used as choices, can be created with \code{\link{make_tree}}.}
 
-\item{selected}{Default selected value.}
+\item{selected}{Default selected value, must correspond to the Id of the node.}
 
 \item{hierarchical}{When a level is selected, also select all levels below it?}
 

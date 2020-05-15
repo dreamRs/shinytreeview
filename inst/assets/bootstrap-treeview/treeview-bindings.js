@@ -31,6 +31,9 @@ $.extend(treeviewInputBinding, {
   },
   setValue: function(el, value) {},
   subscribe: function(el, callback) {
+    $(el).on("initialized", function(event, data) {
+      callback();
+    });
     $(el).on("nodeSelected", function(event, data) {
       callback();
     });
@@ -89,17 +92,17 @@ $.extend(treeviewInputBinding, {
     var tree = $(el).treeview(true);
     $(el).on("rendered ", function(event, data) {
       if (options.hasOwnProperty("selected")) {
-        var selected = tree.search(options.selected, {
-          ignoreCase: false,
-          exactMatch: true,
-          revealResults: false
+        var selected = options.selected.map(function(id) {
+          return tree.findNodes("^" + id + "$", "id")[0];
+        });
+        selected = selected.filter(function(el) {
+          return el !== null;
         });
         tree.selectNode(selected);
-        tree.search("", {
-          ignoreCase: false,
-          exactMatch: true,
-          revealResults: false
-        });
+        var maxLevel = Math.max.apply(Math, selected.map(function(o) { return o.level; }));
+        var parents = tree.getParents(selected);
+        tree.expandNode(parents, { levels: maxLevel, silent: true });
+        tree.clearSearch();
       }
       var nodes = tree.getNodes().map(function(o) {
         return { text: o.text, nodeId: o.nodeId, parentId: o.parentId };

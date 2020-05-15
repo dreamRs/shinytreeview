@@ -5,8 +5,8 @@
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or \code{NULL} for no label.
-#' @param choices A \code{list} to be used as choices.
-#' @param selected Default selected value.
+#' @param choices A \code{list} to be used as choices, can be created with \code{\link{make_tree}}.
+#' @param selected Default selected value, must correspond to the Id of the node.
 #' @param multiple Allow selection of multiple values.
 #' @param levels Sets the number of hierarchical levels deep the tree will be expanded to by default.
 #' @param borders Show or not borders around items.
@@ -93,6 +93,7 @@ html_dependency_treeview <- function() {
 #'
 #' @param data A \code{data.frame}.
 #' @param levels Variables identifying hierarchical levels.
+#' @param selected Default selected value(s).
 #' @param ... Named arguments with \code{list} of attributes
 #'  to apply to a certain level. Names must be the same as the \code{levels}.
 #'  Full list of attributes is available at the following URL :
@@ -102,7 +103,7 @@ html_dependency_treeview <- function() {
 #' @export
 #'
 #' @example examples/make_tree.R
-make_tree <- function(data, levels, ...) {
+make_tree <- function(data, levels, selected = NULL, ...) {
   args <- list(...)
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
@@ -114,27 +115,26 @@ make_tree <- function(data, levels, ...) {
     FUN = function(var) {
       dat <- data[data[[levels[1]]] == var, , drop = FALSE]
       args_level <- args[[levels[1]]]
-      if (length(levels) == 1) {
-        if (!is.null(args_level)) {
-          c(list(text = var), args_level)
-        } else {
-          list(text = var)
+      if (!is.null(selected)) {
+        if (var %in% selected) {
+          args_level$state$selected <- TRUE
         }
+      }
+      if (length(levels) == 1) {
+        c(list(text = var), args_level)
       } else {
-        if (!is.null(args_level)) {
-          c(
-            list(
-              text = var,
-              nodes = make_tree(dat, levels[-1], ...)
-            ),
-            args_level
-          )
-        } else {
+        c(
           list(
             text = var,
-            nodes = make_tree(dat, levels[-1], ...)
-          )
-        }
+            nodes = make_tree(
+              data = dat,
+              levels = levels[-1],
+              selected = selected,
+              ...
+            )
+          ),
+          args_level
+        )
       }
     }
   )
