@@ -99,8 +99,8 @@ $.extend(treeviewInputBinding, {
           return el !== null;
         });
         tree.selectNode(selected);
-        var maxLevel = Math.max.apply(Math, selected.map(function(o) { return o.level; }));
         var parents = tree.getParents(selected);
+        var maxLevel = Math.max.apply(Math, parents.map(function(o) { return o.level; }));
         tree.expandNode(parents, { levels: maxLevel, silent: true });
         tree.clearSearch();
       }
