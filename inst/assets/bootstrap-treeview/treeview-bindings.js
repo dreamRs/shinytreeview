@@ -208,7 +208,7 @@ $.extend(treecheckInputBinding, {
           exactMatch: true,
           revealResults: false
         });
-        tree.checkNode(selected);
+        tree.toggleNodeChecked(selected);
         tree.search("", {
           ignoreCase: false,
           exactMatch: true,
