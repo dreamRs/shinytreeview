@@ -7,7 +7,7 @@
 var treeviewInputBinding = new Shiny.InputBinding();
 $.extend(treeviewInputBinding, {
   find: function(scope) {
-    return scope.querySelectorAll(".treeview-input");
+    return $(scope).find(".treeview-input");
   },
   getId: function(el) {
     return el.id;
@@ -121,7 +121,7 @@ Shiny.inputBindings.register(
 var treecheckInputBinding = new Shiny.InputBinding();
 $.extend(treecheckInputBinding, {
   find: function(scope) {
-    return scope.querySelectorAll(".treecheck-input");
+    return $(scope).find(".treecheck-input");
   },
   getId: function(el) {
     return el.id;
