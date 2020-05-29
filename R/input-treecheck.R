@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @importFrom htmltools tags validateCssUnit htmlDependencies
-#' @importFrom shiny icon
+#' @importFrom shiny icon restoreInput
 #' @importFrom jsonlite toJSON
 #'
 #' @example examples/treecheck.R
@@ -21,6 +21,7 @@ treecheckInput <- function(inputId,
                            borders = TRUE,
                            return_value = c("name", "id", "all"),
                            width = NULL) {
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   return_value <- match.arg(return_value)
   options <- dropNulls(list(
     config = c(

@@ -22,6 +22,7 @@
 #'
 #' @importFrom htmltools tags validateCssUnit
 #' @importFrom jsonlite toJSON
+#' @importFrom shiny restoreInput
 #'
 #' @example examples/basic.R
 treeviewInput <- function(inputId,
@@ -35,6 +36,7 @@ treeviewInput <- function(inputId,
                           ...,
                           return_value = c("name", "id", "all"),
                           width = NULL) {
+  selected <- shiny::restoreInput(id = inputId, default = selected)
   return_value <- match.arg(return_value)
   options <- dropNulls(list(
     config = c(

@@ -1,6 +1,6 @@
 Package: shinytreeview
 Title: Tree View for 'shiny' Applications
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: 
     c(person(given = "Victor",
              family = "Perrier",
