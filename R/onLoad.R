@@ -1,10 +1,9 @@
 #' Adds the content of assets/ to shinytreeview/
 #'
-#' @importFrom shiny addResourcePath registerInputHandler
+#' @importFrom shiny registerInputHandler
 #' @noRd
 #'
 .onLoad <- function(...) {
-  shiny::addResourcePath("shinytreeview", system.file("assets", package = "shinytreeview"))
   shiny::registerInputHandler("treeview.name", function(data, ...) {
     if (is.null(data) || length(data) < 1) {
       NULL
