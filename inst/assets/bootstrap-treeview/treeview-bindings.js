@@ -86,7 +86,7 @@ $.extend(treeviewInputBinding, {
     var element = document.getElementById(el.id);
 
     var options = element.querySelector('script[data-for="' + el.id + '"]');
-    options = JSON.parse(options.innerHTML);
+    options = eval("(" + options.innerHTML + ")");
 
     $(el).treeview(options.config);
     var tree = $(el).treeview(true);
