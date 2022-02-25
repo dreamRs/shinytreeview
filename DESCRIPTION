@@ -1,6 +1,6 @@
 Package: shinytreeview
 Title: Tree View for 'shiny' Applications
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: 
     c(person(given = "Victor",
              family = "Perrier",
@@ -19,12 +19,13 @@ Authors@R:
              comment = "Modified version of Bootstrap Tree View"),
       person(family = "DARES",
              role = "fnd"))
-Description: A simple and elegant solution to displaying hierarchical tree structures in 'shiny' applications.
+Description: A simple and elegant solution to displaying hierarchical 
+    tree structures in 'shiny' applications to serve as input values.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.2
 Imports: 
     htmltools,
     shiny,
