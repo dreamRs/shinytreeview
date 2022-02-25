@@ -7,7 +7,7 @@
 #' @return Server-side: A `character` value or a `list` depending on the `return_value` argument.
 #' @export
 #'
-#' @importFrom htmltools tags validateCssUnit htmlDependencies
+#' @importFrom htmltools tags validateCssUnit htmlDependencies HTML
 #' @importFrom shiny icon restoreInput
 #' @importFrom jsonlite toJSON
 #'
@@ -55,7 +55,7 @@ treecheckInput <- function(inputId,
       `data-return` = return_value,
       tags$script(
         type = "application/json", `data-for` = inputId,
-        jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE)
+        HTML(jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE))
       )
     ),
     html_dependency_treeview(),

@@ -20,7 +20,7 @@
 #' @return Server-side: A \code{character} value or a \code{list} depending on the \code{return_value} argument.
 #' @export
 #'
-#' @importFrom htmltools tags validateCssUnit
+#' @importFrom htmltools tags validateCssUnit HTML
 #' @importFrom jsonlite toJSON
 #' @importFrom shiny restoreInput
 #'
@@ -63,7 +63,7 @@ treeviewInput <- function(inputId,
       `data-return` = return_value,
       tags$script(
         type = "application/json", `data-for` = inputId,
-        jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE)
+        HTML(jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE))
       )
     ),
     html_dependency_treeview()
