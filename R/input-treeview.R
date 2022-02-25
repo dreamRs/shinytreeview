@@ -171,7 +171,7 @@ make_tree <- function(data, levels, selected = NULL, levels_id = NULL, ...) {
               nodes = make_tree(
                 data = dat,
                 levels = levels[-1],
-                levelsId = levelsId[-1],
+                levels_id = levels_id[-1],
                 selected = selected,
                 ...
               )
