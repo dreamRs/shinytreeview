@@ -1,0 +1,36 @@
+{
+  "name": "shinytreeview",
+  "version": "1.0.0",
+  "description": "> Hierarchical tree structures input for Shiny applications. Interface for [bootstrap-treeview](https://github.com/patternfly/patternfly-bootstrap-treeview) JS library.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "man": "man"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "none": "webpack --config webpack.dev.js --mode=none",
+    "development": "webpack --config webpack.dev.js",
+    "production": "webpack --config webpack.prod.js",
+    "watch": "webpack --config webpack.dev.js -d --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dreamRs/shinytreeview.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dreamRs/shinytreeview/issues"
+  },
+  "homepage": "https://github.com/dreamRs/shinytreeview#readme",
+  "devDependencies": {
+    "patternfly-bootstrap-treeview": "^2.1.10",
+    "css-loader": "^6.6.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-merge": "^5.8.0"
+  }
+}

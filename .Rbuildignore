@@ -4,3 +4,10 @@
 ^examples$
 ^data-raw$
 ^\.github$
+^srcjs$
+^node_modules$
+^package\.json$
+^package-lock\.json$
+^webpack\.dev\.js$
+^webpack\.prod\.js$
+^webpack\.common\.js$

@@ -3,3 +3,4 @@
 .RData
 .Ruserdata
 *.Rproj
+node_modules

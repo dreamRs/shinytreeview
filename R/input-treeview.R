@@ -73,17 +73,16 @@ treeviewInput <- function(inputId,
 
 
 #' @importFrom htmltools htmlDependency
+#' @importFrom utils packageVersion
 html_dependency_treeview <- function() {
-  htmltools::htmlDependency(
+  htmlDependency(
     name = "bootstrap-treeview",
-    version = "2.1.7",
-    src = c(href = "shinytreeview/bootstrap-treeview"),
-    script = c("bootstrap-treeview.min.js", "treeview-bindings.js"),
-    stylesheet = "bootstrap-treeview.min.css",
-    all_files = FALSE
+    version = packageVersion("shinytreeview"),
+    src = list(file = "packer"),
+    package = "shinytreeview",
+    script = "treeview.js"
   )
 }
-
 
 
 

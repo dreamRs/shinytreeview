@@ -93,3 +93,21 @@ if (interactive())
   shinyApp(ui, server)
 ```
 
+
+## Development
+
+This package use [{packer}](https://github.com/JohnCoene/packer) to manage JavaScript assets, see packer's [documentation](https://packer.john-coene.com/#/) for more.
+
+Install nodes modules with:
+
+```r
+packer::npm_install()
+```
+
+Modify `srcjs/inputs/treeview.js`, then run:
+
+```r
+packer::bundle()
+```
+
+Re-install R package and try demo applications in `examples/`.
