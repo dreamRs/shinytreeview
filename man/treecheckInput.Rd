@@ -12,6 +12,7 @@ treecheckInput(
   hierarchical = TRUE,
   levels = 1,
   borders = TRUE,
+  ...,
   return_value = c("name", "id", "all"),
   width = NULL
 )
@@ -30,6 +31,8 @@ treecheckInput(
 \item{levels}{Sets the number of hierarchical levels deep the tree will be expanded to by default.}
 
 \item{borders}{Show or not borders around items.}
+
+\item{...}{Others parameters passed to JavaScript treeview method.}
 
 \item{return_value}{Value returned server-side, default is the element name,
 other possibilities are \code{"id"} (works only if nodes have an id) or

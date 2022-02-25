@@ -4,7 +4,7 @@
 #' @inheritParams treeviewInput
 #' @param hierarchical When a level is selected, also select all levels below it?
 #'
-#' @return Server-side: A \code{character} value or a \code{list} depending on the \code{return_value} argument.
+#' @return Server-side: A `character` value or a `list` depending on the `return_value` argument.
 #' @export
 #'
 #' @importFrom htmltools tags validateCssUnit htmlDependencies
@@ -19,27 +19,28 @@ treecheckInput <- function(inputId,
                            hierarchical = TRUE,
                            levels = 1,
                            borders = TRUE,
+                           ...,
                            return_value = c("name", "id", "all"),
                            width = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   return_value <- match.arg(return_value)
+  config <- list(
+    data = choices,
+    levels = levels,
+    showBorder = borders,
+    showCheckbox = TRUE,
+    highlightSelected = FALSE,
+    propagateCheckEvent = hierarchical,
+    hierarchicalCheck = hierarchical,
+    uncheckedIcon = "fa fa-square-o",
+    partiallyCheckedIcon = "fa fa-minus-square-o",
+    checkedIcon = "fa fa-check-square-o",
+    expandIcon = "fa fa-chevron-right",
+    collapseIcon = "fa fa-chevron-down",
+    ...
+  )
   options <- dropNulls(list(
-    config = c(
-      list(
-        data = choices,
-        levels = levels,
-        showBorder = borders,
-        showCheckbox = TRUE,
-        highlightSelected = FALSE,
-        propagateCheckEvent = hierarchical,
-        hierarchicalCheck = hierarchical,
-        uncheckedIcon = "fa fa-square-o",
-        partiallyCheckedIcon = "fa fa-minus-square-o",
-        checkedIcon = "fa fa-check-square-o",
-        expandIcon = "fa fa-chevron-right",
-        collapseIcon = "fa fa-chevron-down"
-      )
-    ),
+    config = config[!duplicated(names(config), fromLast = TRUE)],
     selected = list1(selected)
   ))
 
