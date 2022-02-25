@@ -91,55 +91,97 @@ html_dependency_treeview <- function() {
 
 
 
-#' Create choice structure for \code{treeviewInput}
+#' Create choice structure for [treeviewInput()]
 #'
-#' @param data A \code{data.frame}.
-#' @param levels Variables identifying hierarchical levels.
+#' @param data A `data.frame`.
+#' @param levels Variables identifying hierarchical levels,
+#'  values of those variables will be used as text displayed.
 #' @param selected Default selected value(s).
-#' @param ... Named arguments with \code{list} of attributes
-#'  to apply to a certain level. Names must be the same as the \code{levels}.
-#'  Full list of attributes is available at the following URL :
-#'  \url{https://github.com/patternfly/patternfly-bootstrap-treeview#node-properties}.
+#' @param levels_id Variable to use as ID, thos values wont't
+#'  be displayed but can be retrieved server-side with `return_value = "id"`.
+#' @param ... Named arguments with `list` of attributes
+#'  to apply to a certain level. Names must be the same as the `levels`.
+#'  See
+#'  [full list of attributes](https://github.com/patternfly/patternfly-bootstrap-treeview#node-properties).
 #'
-#' @return a \code{list} that can be used in \code{\link{treeviewInput}}.
+#' @return a \code{list} that can be used in [treeviewInput()] or [treecheckInput()].
 #' @export
 #'
 #' @example examples/make_tree.R
-make_tree <- function(data, levels, selected = NULL, ...) {
+make_tree <- function(data, levels, selected = NULL, levels_id = NULL, ...) {
   args <- list(...)
   data <- as.data.frame(data)
   if (!all(levels %in% names(data)))
     stop("All levels must be valid variables in data", call. = FALSE)
   data[levels] <- lapply(data[levels], as.character)
   data <- unique(x = data)
-  lapply(
-    X = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
-    FUN = function(var) {
-      dat <- data[data[[levels[1]]] == var, , drop = FALSE]
-      args_level <- args[[levels[1]]]
-      if (!is.null(selected)) {
-        if (var %in% selected) {
-          args_level$state$selected <- TRUE
+  if (is.null(levels_id)) {
+    lapply(
+      X = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
+      FUN = function(var) {
+        dat <- data[data[[levels[1]]] == var, , drop = FALSE]
+        args_level <- args[[levels[1]]]
+        if (!is.null(selected)) {
+          if (var %in% selected) {
+            args_level$state$selected <- TRUE
+          }
+        }
+        if (length(levels) == 1) {
+          c(list(text = var), args_level)
+        } else {
+          c(
+            list(
+              text = var,
+              nodes = make_tree(
+                data = dat,
+                levels = levels[-1],
+                selected = selected,
+                ...
+              )
+            ),
+            args_level
+          )
         }
       }
-      if (length(levels) == 1) {
-        c(list(text = var), args_level)
-      } else {
-        c(
-          list(
-            text = var,
-            nodes = make_tree(
-              data = dat,
-              levels = levels[-1],
-              selected = selected,
-              ...
-            )
-          ),
-          args_level
-        )
+    )
+  } else {
+    stopifnot(
+      "levels and levels_id must be of same length" = length(levels) == length(levels_id)
+    )
+    mapply(
+      SIMPLIFY = FALSE,
+      USE.NAMES = FALSE,
+      text = unique(data[[levels[1]]][!is.na(data[[levels[1]]])]),
+      id = unique(data[[levels_id[1]]][!is.na(data[[levels_id[1]]])]),
+      FUN = function(text, id) {
+        dat <- data[data[[levels[1]]] == text, , drop = FALSE]
+        args_level <- args[[levels[1]]]
+        if (!is.null(selected)) {
+          if (text %in% selected) {
+            args_level$state$selected <- TRUE
+          }
+        }
+        if (length(levels) == 1) {
+          c(list(text = text, id = id), args_level)
+        } else {
+          c(
+            list(
+              text = text,
+              id = id,
+              nodes = make_tree(
+                data = dat,
+                levels = levels[-1],
+                levelsId = levelsId[-1],
+                selected = selected,
+                ...
+              )
+            ),
+            args_level
+          )
+        }
       }
-    }
-  )
+    )
+  }
 }
 
 

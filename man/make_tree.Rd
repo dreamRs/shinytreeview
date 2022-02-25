@@ -2,27 +2,31 @@
 % Please edit documentation in R/input-treeview.R
 \name{make_tree}
 \alias{make_tree}
-\title{Create choice structure for \code{treeviewInput}}
+\title{Create choice structure for \code{\link[=treeviewInput]{treeviewInput()}}}
 \usage{
-make_tree(data, levels, selected = NULL, ...)
+make_tree(data, levels, selected = NULL, levels_id = NULL, ...)
 }
 \arguments{
 \item{data}{A \code{data.frame}.}
 
-\item{levels}{Variables identifying hierarchical levels.}
+\item{levels}{Variables identifying hierarchical levels,
+values of those variables will be used as text displayed.}
 
 \item{selected}{Default selected value(s).}
 
+\item{levels_id}{Variable to use as ID, thos values wont't
+be displayed but can be retrieved server-side with \code{return_value = "id"}.}
+
 \item{...}{Named arguments with \code{list} of attributes
 to apply to a certain level. Names must be the same as the \code{levels}.
-Full list of attributes is available at the following URL :
-\url{https://github.com/patternfly/patternfly-bootstrap-treeview#node-properties}.}
+See
+\href{https://github.com/patternfly/patternfly-bootstrap-treeview#node-properties}{full list of attributes}.}
 }
 \value{
-a \code{list} that can be used in \code{\link{treeviewInput}}.
+a \code{list} that can be used in \code{\link[=treeviewInput]{treeviewInput()}} or \code{\link[=treecheckInput]{treecheckInput()}}.
 }
 \description{
-Create choice structure for \code{treeviewInput}
+Create choice structure for \code{\link[=treeviewInput]{treeviewInput()}}
 }
 \examples{
 library(shinytreeview)
