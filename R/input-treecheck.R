@@ -59,6 +59,6 @@ treecheckInput <- function(inputId,
       )
     ),
     html_dependency_treeview(),
-    htmlDependencies(icon("home"))
+    htmlDependencies(icon("plus", verify_fa = FALSE))
   )
 }
