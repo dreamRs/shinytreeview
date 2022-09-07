@@ -1,3 +1,13 @@
+# shinytreeview 0.0.9
+
+* Use [phosphoricons](https://github.com/dreamRs/phosphoricons) for icons.
+
+
+# shinytreeview 0.0.8
+
+* Fixed a bug in `selected =` argument.
+
+
 # shinytreeview 0.0.7
 
 * Internal: use [{packer}](https://github.com/JohnCoene/packer) to manage JavaScript assets.

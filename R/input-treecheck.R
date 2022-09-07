@@ -32,11 +32,11 @@ treecheckInput <- function(inputId,
     highlightSelected = FALSE,
     propagateCheckEvent = hierarchical,
     hierarchicalCheck = hierarchical,
-    uncheckedIcon = "fa fa-square-o",
-    partiallyCheckedIcon = "fa fa-minus-square-o",
-    checkedIcon = "fa fa-check-square-o",
-    expandIcon = "fa fa-chevron-right",
-    collapseIcon = "fa fa-chevron-down",
+    uncheckedIcon = "ph-square-light ph-shinytreeview",
+    partiallyCheckedIcon = "ph-square-logo-light ph-shinytreeview",
+    checkedIcon = "ph-check-square-light ph-shinytreeview",
+    expandIcon = "ph-caret-right-light ph-shinytreeview",
+    collapseIcon = "ph-caret-down-light ph-shinytreeview",
     ...
   )
   options <- dropNulls(list(
@@ -59,6 +59,6 @@ treecheckInput <- function(inputId,
       )
     ),
     html_dependency_treeview(),
-    htmlDependencies(icon("plus", verify_fa = FALSE))
+    phosphoricons::html_dependency_phosphor()
   )
 }

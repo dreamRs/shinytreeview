@@ -42,17 +42,18 @@ treeviewInput <- function(inputId,
     warning("Multiple selected values used but multiple = FALSE, only first one will be selected.")
     selected <- selected[1]
   }
+  config <- list(
+    data = choices,
+    multiSelect = multiple,
+    preventUnselect = prevent_unselect,
+    levels = levels,
+    showBorder = borders,
+    expandIcon = "ph-plus-light ph-shinytreeview",
+    collapseIcon = "ph-minus-light ph-shinytreeview",
+    ...
+  )
   options <- dropNulls(list(
-    config = c(
-      list(
-        data = choices,
-        multiSelect = multiple,
-        preventUnselect = prevent_unselect,
-        levels = levels,
-        showBorder = borders
-      ),
-      list(...)
-    ),
+    config = config,
     selected = list1(selected)
   ))
 
@@ -70,7 +71,8 @@ treeviewInput <- function(inputId,
         HTML(jsonlite::toJSON(options, auto_unbox = TRUE, json_verbatim = TRUE))
       )
     ),
-    html_dependency_treeview()
+    html_dependency_treeview(),
+    phosphoricons::html_dependency_phosphor()
   )
 }
 

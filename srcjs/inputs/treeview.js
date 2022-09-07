@@ -2,6 +2,7 @@ import $ from "jquery";
 import "shiny";
 import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js";
 import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css";
+import "../css/styles.css";
 
 var treeviewInputBinding = new Shiny.InputBinding();
 $.extend(treeviewInputBinding, {
