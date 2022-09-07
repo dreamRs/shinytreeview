@@ -1,7 +1,7 @@
 import $ from "jquery";
 import "shiny";
-import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js"
-import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css"
+import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js";
+import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css";
 
 var treeviewInputBinding = new Shiny.InputBinding();
 $.extend(treeviewInputBinding, {
@@ -91,16 +91,18 @@ $.extend(treeviewInputBinding, {
     var tree = $(el).treeview(true);
     $(el).on("rendered ", function(event, data) {
       if (options.hasOwnProperty("selected")) {
-        var selected = options.selected.map(function(id) {
-          return tree.findNodes("^" + id + "$", "id")[0];
-        });
-        selected = selected.filter(function(el) {
-          return el !== null;
-        });
-        tree.selectNode(selected);
-        var parents = tree.getParents(selected);
-        var maxLevel = Math.max.apply(Math, parents.map(function(o) { return o.level; }));
-        tree.expandNode(parents, { levels: maxLevel, silent: true });
+        var selected;
+        for (let i = 0; i < options.selected.length; i++) {
+          selected = tree.search(options.selected[i], {
+            ignoreCase: false,
+            exactMatch: true,
+            revealResults: false
+          });
+          tree.selectNode(selected);
+          var parents = tree.getParents(selected);
+          var maxLevel = Math.max.apply(Math, parents.map(function(o) { return o.level; }));
+          tree.expandNode(parents, { levels: maxLevel, silent: true });
+        }
         tree.clearSearch();
       }
       var nodes = tree.getNodes().map(function(o) {
@@ -200,14 +202,18 @@ $.extend(treecheckInputBinding, {
 
     $(el).treeview(options.config);
     var tree = $(el).treeview(true);
+    //console.log(tree);
     $(el).on("rendered ", function(event, data) {
       if (options.hasOwnProperty("selected")) {
-        var selected = tree.search(options.selected, {
-          ignoreCase: false,
-          exactMatch: true,
-          revealResults: false
-        });
-        tree.toggleNodeChecked(selected);
+        var selected;
+        for (let i = 0; i < options.selected.length; i++) {
+          selected = tree.search(options.selected[i], {
+            ignoreCase: false,
+            exactMatch: true,
+            revealResults: false
+          });
+          tree.toggleNodeChecked(selected);
+        }
         tree.search("", {
           ignoreCase: false,
           exactMatch: true,

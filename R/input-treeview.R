@@ -38,6 +38,10 @@ treeviewInput <- function(inputId,
                           width = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
   return_value <- match.arg(return_value)
+  if (!isTRUE(multiple) && length(selected) > 1) {
+    warning("Multiple selected values used but multiple = FALSE, only first one will be selected.")
+    selected <- selected[1]
+  }
   options <- dropNulls(list(
     config = c(
       list(
