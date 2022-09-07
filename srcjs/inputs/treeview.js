@@ -93,7 +93,9 @@ $.extend(treeviewInputBinding, {
       if (options.hasOwnProperty("selected")) {
         var selected;
         for (let i = 0; i < options.selected.length; i++) {
-          selected = tree.search(options.selected[i], {
+          selected = options.selected[i];
+          selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          selected = tree.search(selected, {
             ignoreCase: false,
             exactMatch: true,
             revealResults: false
@@ -207,7 +209,9 @@ $.extend(treecheckInputBinding, {
       if (options.hasOwnProperty("selected")) {
         var selected;
         for (let i = 0; i < options.selected.length; i++) {
-          selected = tree.search(options.selected[i], {
+          selected = options.selected[i];
+          selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          selected = tree.search(selected, {
             ignoreCase: false,
             exactMatch: true,
             revealResults: false
