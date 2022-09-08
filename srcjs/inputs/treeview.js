@@ -52,6 +52,10 @@ $.extend(treeviewInputBinding, {
       utils.updateLabel(data.label, $(labelNode));
     }
     if (data.hasOwnProperty("selected")) {
+      if (data.selected.length < 1) {
+        var nodes = tree.getSelected();
+        tree.unselectNode(nodes);
+      }
       var selected;
       for (let i = 0; i < data.selected.length; i++) {
         selected = data.selected[i];
@@ -196,6 +200,7 @@ $.extend(treecheckInputBinding, {
       utils.updateLabel(data.label, $(labelNode));
     }
     if (data.hasOwnProperty("selected")) {
+      tree.uncheckAll();
       var selected;
       for (let i = 0; i < data.selected.length; i++) {
         selected = data.selected[i];
