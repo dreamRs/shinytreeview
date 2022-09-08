@@ -2,6 +2,7 @@ import $ from "jquery";
 import "shiny";
 import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js";
 import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.css";
+import * as utils from "../modules/utils";
 import "../css/styles.css";
 
 var treeviewInputBinding = new Shiny.InputBinding();
@@ -46,6 +47,32 @@ $.extend(treeviewInputBinding, {
   },
   receiveMessage: function(el, data) {
     var tree = $(el).data("treeview");
+    if (data.hasOwnProperty("label")) {
+      var labelNode = document.getElementById(el.id + "-label");
+      utils.updateLabel(data.label, $(labelNode));
+    }
+    if (data.hasOwnProperty("selected")) {
+      var selected;
+      for (let i = 0; i < data.selected.length; i++) {
+        selected = data.selected[i];
+        selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+        selected = tree.search(selected, {
+          ignoreCase: false,
+          exactMatch: true,
+          revealResults: false
+        });
+        tree.selectNode(selected);
+        var parents = tree.getParents(selected);
+        var maxLevel = Math.max.apply(
+          Math,
+          parents.map(function(o) {
+            return o.level;
+          })
+        );
+        tree.expandNode(parents, { levels: maxLevel, silent: true });
+      }
+      tree.clearSearch();
+    }
     if (data.hasOwnProperty("search")) {
       if (data.search.collapse) {
         tree.collapseAll();
@@ -95,7 +122,7 @@ $.extend(treeviewInputBinding, {
         var selected;
         for (let i = 0; i < options.selected.length; i++) {
           selected = options.selected[i];
-          selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
           selected = tree.search(selected, {
             ignoreCase: false,
             exactMatch: true,
@@ -103,7 +130,12 @@ $.extend(treeviewInputBinding, {
           });
           tree.selectNode(selected);
           var parents = tree.getParents(selected);
-          var maxLevel = Math.max.apply(Math, parents.map(function(o) { return o.level; }));
+          var maxLevel = Math.max.apply(
+            Math,
+            parents.map(function(o) {
+              return o.level;
+            })
+          );
           tree.expandNode(parents, { levels: maxLevel, silent: true });
         }
         tree.clearSearch();
@@ -119,8 +151,6 @@ Shiny.inputBindings.register(
   treeviewInputBinding,
   "shinytreeview.treeviewInput"
 );
-
-
 
 var treecheckInputBinding = new Shiny.InputBinding();
 $.extend(treecheckInputBinding, {
@@ -161,6 +191,28 @@ $.extend(treecheckInputBinding, {
   },
   receiveMessage: function(el, data) {
     var tree = $(el).data("treeview");
+    if (data.hasOwnProperty("label")) {
+      var labelNode = document.getElementById(el.id + "-label");
+      utils.updateLabel(data.label, $(labelNode));
+    }
+    if (data.hasOwnProperty("selected")) {
+      var selected;
+      for (let i = 0; i < data.selected.length; i++) {
+        selected = data.selected[i];
+        selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
+        selected = tree.search(selected, {
+          ignoreCase: false,
+          exactMatch: true,
+          revealResults: false
+        });
+        tree.toggleNodeChecked(selected);
+      }
+      tree.search("", {
+        ignoreCase: false,
+        exactMatch: true,
+        revealResults: false
+      });
+    }
     if (data.hasOwnProperty("search")) {
       if (data.search.collapse) {
         tree.collapseAll();
@@ -211,7 +263,7 @@ $.extend(treecheckInputBinding, {
         var selected;
         for (let i = 0; i < options.selected.length; i++) {
           selected = options.selected[i];
-          selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+          selected = selected.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
           selected = tree.search(selected, {
             ignoreCase: false,
             exactMatch: true,
@@ -236,3 +288,4 @@ Shiny.inputBindings.register(
   treecheckInputBinding,
   "shinytreeview.treecheckInput"
 );
+

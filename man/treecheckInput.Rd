@@ -74,3 +74,6 @@ server <- function(input, output, session) {
 if (interactive())
   shinyApp(ui, server)
 }
+\seealso{
+\code{\link[=updateTreeview]{updateTreeview()}} and others functions to manipulate tree server-side.
+}

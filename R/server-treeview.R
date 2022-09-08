@@ -1,5 +1,7 @@
 
-#' Search a \code{treeviewInput}
+#' @title Manipulate a tree server-side
+#'
+#' @description Interact with a tree contructed with [treeviewInput()] or [treecheckInput()] from the server.
 #'
 #' @param inputId The id of the input object.
 #' @param pattern Pattern to search for.
@@ -9,8 +11,10 @@
 #' @param collapse_before Collapse all nodes before revealing results.
 #' @param session The session object passed to function given to shinyServer.
 #'
-#' @return None.
+#' @return No value, side-effects only.
 #' @export
+#'
+#' @name tree-server
 #'
 #' @example examples/search.R
 searchTreeview <- function(inputId,
@@ -33,20 +37,14 @@ searchTreeview <- function(inputId,
 }
 
 
-
-#' Expand or collapse a \code{treeviewInput}
-#'
-#' @param inputId The id of the input object.
 #' @param nodeId Id of the node to expand or collapse,
 #'  use \code{input$<inputId>_nodes} to see the Ids.
 #'  If \code{NULL} expand the all tree.
 #' @param levels Levels to expand.
-#' @param session The session object passed to function given to shinyServer.
 #'
-#' @return None.
 #' @export
 #'
-#' @name expand-collapse
+#' @rdname tree-server
 #'
 #' @example examples/collapse-expand.R
 expandTreeview <- function(inputId,
@@ -62,8 +60,9 @@ expandTreeview <- function(inputId,
   session$sendInputMessage(inputId, message)
 }
 
+
 #' @export
-#' @rdname expand-collapse
+#' @rdname tree-server
 collapseTreeview <- function(inputId,
                              nodeId = NULL,
                              session = shiny::getDefaultReactiveDomain()) {
@@ -74,7 +73,17 @@ collapseTreeview <- function(inputId,
 }
 
 
-
+#' @inheritParams treeviewInput
+#' @export
+#' @rdname tree-server
+#'
+#' @example examples/update.R
+updateTreeview <- function(inputId,
+                           label = NULL,
+                           selected = NULL,
+                           session = shiny::getDefaultReactiveDomain()) {
+  session$sendInputMessage(inputId, dropNulls(list(label = label, selected = list1(selected))))
+}
 
 
 

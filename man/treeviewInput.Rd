@@ -97,3 +97,6 @@ if (interactive())
 
 
 }
+\seealso{
+\code{\link[=updateTreeview]{updateTreeview()}} and others functions to manipulate tree server-side.
+}

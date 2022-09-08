@@ -20,6 +20,8 @@
 #' @return Server-side: A \code{character} value or a \code{list} depending on the \code{return_value} argument.
 #' @export
 #'
+#' @seealso [updateTreeview()] and others functions to manipulate tree server-side.
+#'
 #' @importFrom htmltools tags validateCssUnit HTML
 #' @importFrom jsonlite toJSON
 #' @importFrom shiny restoreInput
@@ -59,10 +61,14 @@ treeviewInput <- function(inputId,
 
   tags$div(
     class = "form-group shiny-input-container",
-    style = if(!is.null(width)) paste("width:", validateCssUnit(width)),
-    if (!is.null(label)) {
-      tags$label(class = "control-label", `for` = inputId, label)
-    },
+    style = if (!is.null(width)) paste("width:", validateCssUnit(width)),
+    tags$label(
+      id = paste0(inputId, "-label"),
+      class = "control-label",
+      class = if (is.null(label)) "shiny-label-null",
+      `for` = inputId,
+      label
+    ),
     tags$div(
       id = inputId, class = "treeview-input",
       `data-return` = return_value,

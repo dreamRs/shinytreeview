@@ -1,3 +1,8 @@
+# shinytreeview 0.1.0
+
+* New function `updateTreeview()` to update label and selected value from the server.
+
+
 # shinytreeview 0.0.9
 
 * Use [phosphoricons](https://github.com/dreamRs/phosphoricons) for icons.
