@@ -159,6 +159,8 @@ make_tree <- function(data, levels, selected = NULL, levels_id = NULL, ...) {
     stopifnot(
       "levels and levels_id must be of same length" = length(levels) == length(levels_id)
     )
+    if (!all(levels_id %in% names(data)))
+      stop("All levels_id must be valid variables in data", call. = FALSE)
     mapply(
       SIMPLIFY = FALSE,
       USE.NAMES = FALSE,

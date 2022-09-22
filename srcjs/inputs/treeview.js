@@ -65,6 +65,9 @@ $.extend(treeviewInputBinding, {
           exactMatch: true,
           revealResults: false
         });
+        if (selected.length < 1) {
+          selected = tree.findNodes("^" + data.selected[i] + "$", "id");
+        }
         tree.selectNode(selected);
         var parents = tree.getParents(selected);
         var maxLevel = Math.max.apply(
@@ -132,6 +135,9 @@ $.extend(treeviewInputBinding, {
             exactMatch: true,
             revealResults: false
           });
+          if (selected.length < 1) {
+            selected = tree.findNodes("^" + options.selected[i] + "$", "id");
+          }
           tree.selectNode(selected);
           var parents = tree.getParents(selected);
           var maxLevel = Math.max.apply(
@@ -210,6 +216,9 @@ $.extend(treecheckInputBinding, {
           exactMatch: true,
           revealResults: false
         });
+        if (selected.length < 1) {
+          selected = tree.findNodes("^" + data.selected[i] + "$", "id");
+        }
         tree.toggleNodeChecked(selected);
       }
       tree.search("", {
@@ -274,6 +283,9 @@ $.extend(treecheckInputBinding, {
             exactMatch: true,
             revealResults: false
           });
+          if (selected.length < 1) {
+            selected = tree.findNodes("^" + options.selected[i] + "$", "id");
+          }
           tree.toggleNodeChecked(selected);
         }
         tree.search("", {

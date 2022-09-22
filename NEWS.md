@@ -1,3 +1,10 @@
+# shinytreeview 0.1.1
+
+## Bug fixes
+
+* Fixed `selected = ` argument when using an ID to select initial value(s).
+
+
 # shinytreeview 0.1.0
 
 * New function `updateTreeview()` to update label and selected value from the server.
