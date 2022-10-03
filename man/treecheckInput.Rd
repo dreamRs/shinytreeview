@@ -13,6 +13,7 @@ treecheckInput(
   levels = 1,
   borders = TRUE,
   ...,
+  nodes_input = FALSE,
   return_value = c("name", "id", "all"),
   width = NULL
 )
@@ -22,7 +23,7 @@ treecheckInput(
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{choices}{A \code{list} to be used as choices, can be created with \code{\link{make_tree}}.}
+\item{choices}{A \code{list} to be used as choices, can be created with \code{\link[=make_tree]{make_tree()}}.}
 
 \item{selected}{Default selected value, must correspond to the Id of the node.}
 
@@ -33,6 +34,8 @@ treecheckInput(
 \item{borders}{Show or not borders around items.}
 
 \item{...}{Others parameters passed to JavaScript treeview method.}
+
+\item{nodes_input}{Send nodes data through an input value : \verb{input$<inputId>_nodes}.}
 
 \item{return_value}{Value returned server-side, default is the element name,
 other possibilities are \code{"id"} (works only if nodes have an id) or

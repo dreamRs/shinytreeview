@@ -5,13 +5,14 @@
 #'
 #' @param inputId The \code{input} slot that will be used to access the value.
 #' @param label Display label for the control, or \code{NULL} for no label.
-#' @param choices A \code{list} to be used as choices, can be created with \code{\link{make_tree}}.
+#' @param choices A \code{list} to be used as choices, can be created with [make_tree()].
 #' @param selected Default selected value, must correspond to the Id of the node.
 #' @param multiple Allow selection of multiple values.
 #' @param levels Sets the number of hierarchical levels deep the tree will be expanded to by default.
 #' @param borders Show or not borders around items.
 #' @param prevent_unselect When \code{multiple = TRUE}, prevent user to unselect a value.
 #' @param ... Others parameters passed to JavaScript treeview method.
+#' @param nodes_input Send nodes data through an input value : `input$<inputId>_nodes`.
 #' @param return_value Value returned server-side, default is the element name,
 #'  other possibilities are \code{"id"} (works only if nodes have an id) or
 #'  \code{"all"} to returned all the tree under the element selected.
@@ -36,6 +37,7 @@ treeviewInput <- function(inputId,
                           borders = TRUE,
                           prevent_unselect = FALSE,
                           ...,
+                          nodes_input = FALSE,
                           return_value = c("name", "id", "all"),
                           width = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
@@ -56,7 +58,8 @@ treeviewInput <- function(inputId,
   )
   options <- dropNulls(list(
     config = config,
-    selected = list1(selected)
+    selected = list1(selected),
+    nodes_input = nodes_input
   ))
 
   tags$div(

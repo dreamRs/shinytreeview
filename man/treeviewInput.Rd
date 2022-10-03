@@ -14,6 +14,7 @@ treeviewInput(
   borders = TRUE,
   prevent_unselect = FALSE,
   ...,
+  nodes_input = FALSE,
   return_value = c("name", "id", "all"),
   width = NULL
 )
@@ -23,7 +24,7 @@ treeviewInput(
 
 \item{label}{Display label for the control, or \code{NULL} for no label.}
 
-\item{choices}{A \code{list} to be used as choices, can be created with \code{\link{make_tree}}.}
+\item{choices}{A \code{list} to be used as choices, can be created with \code{\link[=make_tree]{make_tree()}}.}
 
 \item{selected}{Default selected value, must correspond to the Id of the node.}
 
@@ -36,6 +37,8 @@ treeviewInput(
 \item{prevent_unselect}{When \code{multiple = TRUE}, prevent user to unselect a value.}
 
 \item{...}{Others parameters passed to JavaScript treeview method.}
+
+\item{nodes_input}{Send nodes data through an input value : \verb{input$<inputId>_nodes}.}
 
 \item{return_value}{Value returned server-side, default is the element name,
 other possibilities are \code{"id"} (works only if nodes have an id) or

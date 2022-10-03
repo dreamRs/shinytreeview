@@ -22,6 +22,7 @@ treecheckInput <- function(inputId,
                            levels = 1,
                            borders = TRUE,
                            ...,
+                           nodes_input = FALSE,
                            return_value = c("name", "id", "all"),
                            width = NULL) {
   selected <- shiny::restoreInput(id = inputId, default = selected)
@@ -43,7 +44,8 @@ treecheckInput <- function(inputId,
   )
   options <- dropNulls(list(
     config = config[!duplicated(names(config), fromLast = TRUE)],
-    selected = list1(selected)
+    selected = list1(selected),
+    nodes_input = nodes_input
   ))
 
   tags$div(

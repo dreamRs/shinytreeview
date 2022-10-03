@@ -1,3 +1,5 @@
+/* jshint esversion: 6 */
+/* globals Shiny */
 import $ from "jquery";
 import "shiny";
 import "patternfly-bootstrap-treeview/dist/bootstrap-treeview.min.js";
@@ -153,7 +155,9 @@ $.extend(treeviewInputBinding, {
       var nodes = tree.getNodes().map(function(o) {
         return { text: o.text, nodeId: o.nodeId, parentId: o.parentId };
       });
-      Shiny.onInputChange(el.id + "_nodes:treeview.nodes", nodes);
+      if (options.nodes_input) {
+        Shiny.onInputChange(el.id + "_nodes:treeview.nodes", nodes);
+      }
     });
   }
 });
@@ -297,7 +301,9 @@ $.extend(treecheckInputBinding, {
       var nodes = tree.getNodes().map(function(o) {
         return { text: o.text, nodeId: o.nodeId, parentId: o.parentId };
       });
-      Shiny.onInputChange(el.id + "_nodes:treeview.nodes", nodes);
+      if (options.nodes_input) {
+        Shiny.onInputChange(el.id + "_nodes:treeview.nodes", nodes);
+      }
     });
   }
 });
