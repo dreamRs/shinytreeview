@@ -1,6 +1,6 @@
 Package: shinytreeview
 Title: Tree View for 'shiny' Applications
-Version: 0.1.2
+Version: 0.1.3
 Authors@R: 
     c(person(given = "Victor",
              family = "Perrier",
@@ -25,7 +25,7 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 Imports: 
     htmltools,
     shiny,

@@ -223,7 +223,11 @@ $.extend(treecheckInputBinding, {
         if (selected.length < 1) {
           selected = tree.findNodes("^" + data.selected[i] + "$", "id");
         }
-        tree.toggleNodeChecked(selected);
+        for (let j = 0; j < selected.length; j++) {
+          if (!selected[j].state.checked) {
+            tree.toggleNodeChecked(selected[j]);
+          }
+        }
       }
       tree.search("", {
         ignoreCase: false,
@@ -290,7 +294,11 @@ $.extend(treecheckInputBinding, {
           if (selected.length < 1) {
             selected = tree.findNodes("^" + options.selected[i] + "$", "id");
           }
-          tree.toggleNodeChecked(selected);
+          for (let j = 0; j < selected.length; j++) {
+            if (!selected[j].state.checked) {
+              tree.toggleNodeChecked(selected[j]);
+            }
+          }
         }
         tree.search("", {
           ignoreCase: false,

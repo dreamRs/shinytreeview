@@ -1,3 +1,13 @@
+# shinytreeview 0.1.3
+
+* `treecheckInput()` : fixed bug in selected value when providing all values of a node and also the node name.
+
+
+# shinytreeview 0.1.2
+
+* Don't send all nodes as input by default
+
+
 # shinytreeview 0.1.1
 
 ## Bug fixes
