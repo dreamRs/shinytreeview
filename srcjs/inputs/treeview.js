@@ -100,7 +100,8 @@ $.extend(treeviewInputBinding, {
           "^" + data.expand.nodeId + "$",
           "nodeId"
         );
-        tree.expandNode(expandedNode, data.expand.options);
+        var parentNodes = tree.getParents(expandedNode);
+        tree.expandNode(parentNodes.concat(expandedNode), data.expand.options);
       } else {
         tree.expandAll(data.expand.options);
       }

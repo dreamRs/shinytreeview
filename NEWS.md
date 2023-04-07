@@ -1,3 +1,9 @@
+# shinytreeview 0.1.4
+
+* `expandTreeview()` : expand a specific node now expand its parent.
+* Fixed `expandTreeview()` example not working.
+
+
 # shinytreeview 0.1.3
 
 * `treecheckInput()` : fixed bug in selected value when providing all values of a node and also the node name.
