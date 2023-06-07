@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build status](https://github.com/dreamRs/shinytreeview/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/shinytreeview/actions)
+[![R-CMD-check](https://github.com/dreamRs/shinytreeview/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dreamRs/shinytreeview/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 
