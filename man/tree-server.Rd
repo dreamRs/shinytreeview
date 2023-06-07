@@ -139,6 +139,7 @@ ui <- fluidPage(
         choices = make_tree(
           countries, c("continent", "subregion", "name")
         ),
+        nodes_input = TRUE,
         width = "100\%"
       )
     ),
@@ -168,7 +169,7 @@ server <- function(input, output, session) {
     nodes <- input$country_nodes
     w_africa <- nodes[nodes$text == "Western Africa", "nodeId"]
     print(w_africa)
-    expandTreeview("country", nodeId = w_africa, levels = 3)
+    expandTreeview("country", nodeId = w_africa)
   })
 
   observeEvent(input$collapseAll, {

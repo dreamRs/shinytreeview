@@ -1,3 +1,8 @@
+# shinytreeview 0.1.5
+
+* Updated icons to works with [phosphoricons](https://github.com/dreamRs/phosphoricons) v0.2.0 release.
+
+
 # shinytreeview 0.1.4
 
 * `expandTreeview()` : expand a specific node now expand its parent.

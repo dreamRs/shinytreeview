@@ -35,11 +35,11 @@ treecheckInput <- function(inputId,
     highlightSelected = FALSE,
     propagateCheckEvent = hierarchical,
     hierarchicalCheck = hierarchical,
-    uncheckedIcon = "ph-square-light ph-shinytreeview",
-    partiallyCheckedIcon = "ph-square-logo-light ph-shinytreeview",
-    checkedIcon = "ph-check-square-light ph-shinytreeview",
-    expandIcon = "ph-caret-right-light ph-shinytreeview",
-    collapseIcon = "ph-caret-down-light ph-shinytreeview",
+    uncheckedIcon = "ph-square ph-light ph-shinytreeview",
+    partiallyCheckedIcon = "ph-square-logo ph-light ph-shinytreeview",
+    checkedIcon = "ph-check-square ph-light ph-shinytreeview",
+    expandIcon = "ph-caret-right ph-light ph-shinytreeview",
+    collapseIcon = "ph-caret-down ph-light ph-shinytreeview",
     ...
   )
   options <- dropNulls(list(

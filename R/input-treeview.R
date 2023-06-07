@@ -52,8 +52,8 @@ treeviewInput <- function(inputId,
     preventUnselect = prevent_unselect,
     levels = levels,
     showBorder = borders,
-    expandIcon = "ph-plus-light ph-shinytreeview",
-    collapseIcon = "ph-minus-light ph-shinytreeview",
+    expandIcon = "ph-plus ph-light ph-shinytreeview",
+    collapseIcon = "ph-minus ph-light ph-shinytreeview",
     ...
   )
   options <- dropNulls(list(
