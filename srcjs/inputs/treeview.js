@@ -94,6 +94,9 @@ $.extend(treeviewInputBinding, {
         tree.search(data.search.pattern, data.search.options);
       }
     }
+    if (data.hasOwnProperty("clearSearch")) {
+     tree.clearSearch(); 
+    }
     if (data.hasOwnProperty("expand")) {
       if (data.expand.hasOwnProperty("nodeId")) {
         var expandedNode = tree.findNodes(
@@ -247,6 +250,9 @@ $.extend(treecheckInputBinding, {
       } else {
         tree.search(data.search.pattern, data.search.options);
       }
+    }
+    if (data.hasOwnProperty("clearSearch")) {
+     tree.clearSearch(); 
     }
     if (data.hasOwnProperty("expand")) {
       if (data.expand.hasOwnProperty("nodeId")) {

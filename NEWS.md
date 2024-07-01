@@ -1,3 +1,8 @@
+# shinytreeview 0.1.6
+
+* Added `clearSearchTreeview()` function.
+
+
 # shinytreeview 0.1.5
 
 * Updated icons to works with [phosphoricons](https://github.com/dreamRs/phosphoricons) v0.2.0 release.

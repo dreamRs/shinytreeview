@@ -35,11 +35,16 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$search, {
-    searchTreeview(
-      inputId = "country",
-      pattern = input$search,
-      reveal_results = TRUE
-    )
+    if (isTruthy(input$search)) {
+      searchTreeview(
+        inputId = "country",
+        pattern = input$search,
+        reveal_results = TRUE
+      )
+    } else {
+      clearSearchTreeview("country")
+      collapseTreeview("country")
+    }
   })
 }
 

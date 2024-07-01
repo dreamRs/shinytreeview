@@ -3,6 +3,7 @@
 \name{tree-server}
 \alias{tree-server}
 \alias{searchTreeview}
+\alias{clearSearchTreeview}
 \alias{expandTreeview}
 \alias{collapseTreeview}
 \alias{updateTreeview}
@@ -17,6 +18,8 @@ searchTreeview(
   collapse_before = TRUE,
   session = shiny::getDefaultReactiveDomain()
 )
+
+clearSearchTreeview(inputId, session = shiny::getDefaultReactiveDomain())
 
 expandTreeview(
   inputId,
@@ -54,7 +57,7 @@ updateTreeview(
 \item{session}{The session object passed to function given to shinyServer.}
 
 \item{nodeId}{Id of the node to expand or collapse,
-use \code{input$<inputId>_nodes} to see the Ids.
+use \verb{input$<inputId>_nodes} to see the Ids.
 If \code{NULL} expand the all tree.}
 
 \item{levels}{Levels to expand.}
@@ -107,11 +110,16 @@ server <- function(input, output, session) {
   })
 
   observeEvent(input$search, {
-    searchTreeview(
-      inputId = "country",
-      pattern = input$search,
-      reveal_results = TRUE
-    )
+    if (isTruthy(input$search)) {
+      searchTreeview(
+        inputId = "country",
+        pattern = input$search,
+        reveal_results = TRUE
+      )
+    } else {
+      clearSearchTreeview("country")
+      collapseTreeview("country")
+    }
   })
 }
 

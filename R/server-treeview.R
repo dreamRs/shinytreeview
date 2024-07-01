@@ -37,9 +37,18 @@ searchTreeview <- function(inputId,
 }
 
 
+#' @export
+#'
+#' @rdname tree-server
+clearSearchTreeview <- function(inputId, session = shiny::getDefaultReactiveDomain()) {
+  message <- list(clearSearch = list(clearSearch = TRUE))
+  session$sendInputMessage(inputId, message)
+}
+
+
 #' @param nodeId Id of the node to expand or collapse,
-#'  use \code{input$<inputId>_nodes} to see the Ids.
-#'  If \code{NULL} expand the all tree.
+#'  use `input$<inputId>_nodes` to see the Ids.
+#'  If `NULL` expand the all tree.
 #' @param levels Levels to expand.
 #'
 #' @export
